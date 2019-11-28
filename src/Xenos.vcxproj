@@ -43,6 +43,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
+    <SpectreMitigation>false</SpectreMitigation>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -100,7 +101,7 @@
       <PreprocessorDefinitions>WIN32;BLACKBONE_STATIC;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <PrecompiledHeader />
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
@@ -253,7 +254,7 @@
     <None Include="..\ext\blackbone\src\BlackBoneDrv\bin\x64\Win8Release\BlackBoneDrv8.sys" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ext\BlackBone\src\BlackBone\BlackBone.vcxproj">
+    <ProjectReference Include="..\ext\blackbone\src\BlackBone\BlackBone.vcxproj">
       <Project>{a2c53563-46f5-4d87-903f-3f1f2fdb2deb}</Project>
     </ProjectReference>
   </ItemGroup>

@@ -27,9 +27,12 @@ INT_PTR DlgWait::OnInit( HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam )
     return TRUE;
 }
 
+static bool g_bCloseBtnClicked = false;
+
 INT_PTR DlgWait::OnCloseBtn( HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam )
 {
     _context.waitActive = false;
+	g_bCloseBtnClicked = true;
     return TRUE;
 }
 
@@ -39,9 +42,11 @@ INT_PTR DlgWait::OnCloseBtn( HWND hDlg, UINT message, WPARAM wParam, LPARAM lPar
 /// <returns>Error code</returns>
 NTSTATUS DlgWait::WaitForInjection()
 {
-    for (bool inject = true; inject && _status != STATUS_REQUEST_ABORTED; inject = _context.cfg.injIndef)
-        _status = _core.InjectMultiple( &_context );
-
+	while (g_bCloseBtnClicked == false)
+	{
+		for (bool inject = true; inject && _status != STATUS_REQUEST_ABORTED; inject = _context.cfg.injIndef)
+			_status = _core.InjectMultiple(&_context);
+	}
     CloseDialog();
     return _status;
 }
